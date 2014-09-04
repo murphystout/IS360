@@ -1,0 +1,49 @@
+# Question 1 - Create vector that contains 20 numbers
+
+vector1 <- c(1,2,3,21,54,1,2,4,1,5,1,43,2,5,21,354,1,4,3,43)
+
+# Question 2 - Convert the vector into a character vector
+
+vector1.char <- as.character(vector1)
+
+# Question 3 - Convert the vector into a vector of factors
+
+vector1.factor <- as.factor(vector1)
+
+# Question 4 - Show how many levels the vector in the previous question has
+
+nlevels(vector1.factor)
+
+# Question 5 - Create a vector that takes the vector from questions 1 and performs on it the formula 3x^2 - 4x +1
+
+vector1.poly <- 3*vector1^2 - 4*vector1 + 1
+
+# Question 6 - Create a list with several elements that are each able to be referenced by name.
+
+list1 <- list(element1=vector1,element2=vector1.char,element3=vector1.factor,element4=vector1.poly)
+
+# Question 7 - Create a data frame with four columns, one each character, factor (with 3 levels), numberic and date.  Have at least 10 observations.
+
+dataframe1 <- data.frame(CharacterColumn1 = c(letters[1:10]), FactorColumn = as.factor(c(22,45,64,22,45,64,22,45,64,22)), NumericColumn=c(1:10) ,dateColumn = as.Date(c(1:10),origin = "1900-01-01"), stringsAsFactors = FALSE)
+
+# Question 8 - Illustrate how to add a row with a value for the factor column that isn't already in the list of levels
+
+dataframe1$FactorColumn <- as.character(dataframe1$FactorColumn)
+newrow <- c("k", 88, 11, "1900-01-12")
+dataframe1 <- rbind(dataframe1,newrow)
+dataframe1$FactorColumn <- as.factor(dataframe1$FactorColumn)
+
+# Question 9 - Show the code that would read in a CSV file called temperatures.csv from the current working directory
+
+read.table("temperature.csv", sep = ",")
+
+# Question 10 - Show the code that would read in a TSV (tab-separated) file called measurements.txt from a directory other than the working directory on your local machine.
+
+read.table("C:/users/hayesmi/otherdirectory/measurements.txt", sep = "\t")
+
+# Question 11 Show the code that will read in a delimited file with a pipe separator (the “|” symbol) from a website location. (You may make up an appropriate URL.)
+
+read.table("http://www.example.com/pipe-delimited-file.txt", sep = "|")
+
+
+
