@@ -1,0 +1,29 @@
+# Assign the five individuals to a vector called queue
+queue <- c("James", "Mary", "Steve", "Alex", "Patricia")
+
+# Update the queue for the arrival of a new patron named Harold.
+queue[length(queue)+1] <- "Harold"
+
+# Update the queue to reflect the fact that James has finished checking out
+queue <- queue[-1]
+
+# Update the queue to reflect the fact that Pam has talked her way in front of Steve with just one item.
+queue[c(2,4)] -> queue[c(4,2)]
+queue[c(3,4)] -> queue[c(4,3)]
+
+# Update the queue to reflect the fact that Harold has grown impatient and left
+
+queue <- queue[-length(queue)]
+
+# Update the queue to reflect the fact that Alex has grown impatient and left. (Do this as if you do not know what slot Alex currently occupies by number.)
+
+queue <- queue[-which(queue == "Alex")]
+
+# Identify the position of Patricia in the queue.
+
+which(queue == "Patricia")
+
+# Count the number of people in the queue
+
+length(queue)
+
