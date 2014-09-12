@@ -1,0 +1,127 @@
+# 1. Write a loop that calculates 12-factorial.
+
+x <- 1
+for (i in 1:12)
+{
+  x <- i*x
+
+}
+print(x)
+
+# 2. Use a loop to calculate the final balance, rounded to the nearest cent, in an account that earns 3.24% 
+# interest compounded monthly after six years if the original balance is $1,500.
+
+# Note to Professor:  Wasn't sure whether monthly balances should be rounded off, or if the final number should be.
+# I went with monthly balances as this seemed more natural.
+
+balance <- 1500
+int.rate <- .0324
+num.months <- 60
+
+for (i in 1:num.months)
+{
+  balance <- round(balance + balance * int.rate, 2)
+
+}
+
+print(balance)
+
+# 3. Create a numeric vector of length 20 and then write code to calculate the sum of every third element of the 
+# vector you have created.
+
+Q3 <- c(1:20)
+Q3.sum <- 0
+
+for(i in Q3)
+{
+  ifelse(i%%3 == 0, Q3.sum <- Q3.sum + i, NA)
+}
+
+print(Q3.sum)
+
+# 4. Use a for loop to calculate the sum of x^i, where x = 2 and i = 1:10
+
+x = 2
+sum = 0
+
+for(i in 1:10)
+  {
+  sum = sum + x^i
+  }
+
+print(sum)
+
+# 5. Use a while loop to accomplish the same task as in the previous exercise
+
+i = 1
+x = 2
+sum = 0
+
+while(i <= 10)
+{
+  sum = sum + x^i
+  i <- i + 1
+}
+
+print(sum)
+
+# 6. Solve the problem from the previous two exercises without using a loop
+
+i = 1:10
+x = 2
+sum(x^i)
+
+# 7. Show how to create a numeric vector that contains the sequence from 20 to 50 by 5
+
+q7 <- seq(from = 20, to = 50, by = 5)
+
+# 8. Show how to create a character vector of length 10 with the same word, “example”, ten times.
+
+q8 <- 1:10
+q8[1:10] <- "Example"
+
+# 9. Show how to take a trio of input numbers a, b, and c and implement the quadratic equation.
+
+q9.function <- function(a,b,c){
+    if (a == 0){
+        return(print("A Cannot Be ZERO!"))
+    } else {
+        x.one <- (-b + sqrt(b^2 - 4 * a * c)) / (2 * a)
+        x.two <- (-b - sqrt(b^2 - 4 * a * c)) / (2 * a)
+        print(x.one)
+        print(x.two)
+    }
+}
+
+# 10. Write a function that takes a numeric vector and calculates the mean of the observations in the vector.
+# NOTE to Professor - Wasn't sure if you wanted validation of the input coded into the function itself.
+# It seems like R does this well anyhow (i.e. returning NA and a warning message), so I left it out.
+
+q10.function <- function(a){
+  return(mean(a))
+  }
+
+# 11. Modify your function in the previous question so that it can handle a numeric vector with missing values.
+
+q11.function <- function(a){
+  return(mean(a, na.rm = TRUE))
+}
+
+# 12. Write a function that takes two numeric input values and calculates the greatest common divisor of the two 
+# numbers.
+
+q12.function <- function(a,b){
+ 
+a.vector <- c(1:a)
+b.vector <- c(1:b)
+a.divisors <- a/a.vector
+b.divisors <- b/b.vector
+gcd = intersect(a.divisors,b.divisors)[1]
+return(gcd)
+}
+
+# 13. Write a function that takes two numeric inputs x and y and calculates x^2 * y + 2xy - xy^2
+
+q13.function <- function(x,y){
+  return(x^2*y + 2 * x * y - x * y^2)
+}
