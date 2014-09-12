@@ -1,0 +1,45 @@
+# Write a function that takes a numeric vector as input and uses it to determine the minimum, the maximum, the 
+# mean, the median, the first quartile, the third quartile, the standard deviation of the vector, and the number of 
+# missing values. Do not use any built-in functions to do this. Return a named list with the eight desired values in 
+# an order you deem best.
+
+w3project.function <- function(a)
+{
+  # Min, Max, Mean, and Missing
+  w3.min <- sort(a, decreasing = FALSE)[1]
+  w3.max <- sort(a, decreasing = TRUE)[1]
+  w3.mean <- sum(a)/length(a)
+  w3.missing <- sum(is.na(a))
+  
+  # Standard Deviation
+  w3.meandiffsquare <- (a - w3.mean)^2
+  w3.meandiffsquaremean <- sum(w3.meandiffsquare)/length(w3.meandiffsquare)
+  w3.stdev <- sqrt(w3.meandiffsquaremean)
+  
+  # Median
+  w3.sorted <- sort(a)
+  w3.n <- length(w3.sorted)
+  if((w3.n %% 2) != 0){
+    w3.median <- w3.sorted[ceiling(w3.n/2)]
+  } else {
+    w3.median <- (w3.sorted[w3.n/2] + w3.sorted[(w3.n/2)+1])/2
+  }
+  
+  # First and Third Quartile
+  
+  
+  if(is.integer((w3.n+1)/4))
+  {
+  w3.q1 <- w3.sorted[(w3.n+1)/4]  
+  w3.q3 <- w3.sorted[3*(w3.n+1)/4]
+  } else {
+    w3.q1 <- ((w3.sorted[round((w3.n+1)/4)] + w3.sorted[ceiling((w3.n+1)/4)])/2)
+    w3.q3 <- ((w3.sorted[round(3 * (w3.n+1)/4)] + w3.sorted[ceiling( 3 *(w3.n+1)/4)])/2)
+  }
+  
+  
+  
+  w3.list <- list(w3.min, w3.max, w3.mean, w3.missing, w3.stdev, w3.median, w3.q1, w3.q3)
+  names(w3.list) <- c("Minimum", "Maximum", "Mean", "Missing Values", "Standard Deviation", "Median", "First Quartile", "Third Quartile")
+  return(w3.list)
+}
