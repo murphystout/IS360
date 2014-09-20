@@ -1,0 +1,39 @@
+# 1.Read in the week-4-price-data.csv and week-4-make-model-data.csv files as data frames and then merge 
+# them by the ModelNumber key. Leave the “all” parameters as their defaults. How many observations end 
+# up in the result? Is this what you would have expected?
+
+setwd("C:/Users/hayesmi/Desktop")
+make.model.df <- read.table(file = "week-4-make-model-data.csv", header = TRUE, sep = ",")
+price.df <- read.table(file = "week-4-price-data.csv", header = TRUE, sep = ",")
+merge.df <- merge(price.df,make.model.df, by = "ModelNumber")
+str(merge.df)
+
+# 27 Observations of 8 Variables.  I would have expected the 8 variables (5 + 4 minus the 1 they have in common).
+# I wouldn't have predicted the observation numbers.
+
+# 2. Use the data sets from the previous question, but this time merge them so that the rows from the price-data 
+# table all appear, even if there is no match in the make-model table.
+
+merge.all.df <- merge(make.model.df,price.df, all.y = TRUE)
+
+# 3. Take your result from question 2 and subset it so that only the 2010 vehicles are included.
+
+q3 <- subset(merge.all.df, Year == 2010)
+
+# 4. Take your result from question 2 and subset it so that only the red cars that cost more than $10,000 are 
+# included.
+
+q4 <- subset(merge.all.df, Color == "Red" & Price > 10000)
+
+# 5. Take your result from question 4 and subset it so that the ModelNumber and Color columns are removed.
+
+q5 <- subset(q4, select=-c(ModelNumber,Color))
+
+# 6. Write a function that takes as input a character vector and returns a numeric vector with the numbers of 
+# characters in each of the elements in the original vector.
+
+q6 <- function(x)
+{
+  return(as.numeric(nchar(x)))
+}
+
