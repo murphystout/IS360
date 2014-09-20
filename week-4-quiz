@@ -1,0 +1,68 @@
+# 1. OSEMN
+
+# Obtain - Get data in a scalable way, via programatic methods, not just copy-paste.
+# Scrub - Get rid of the noise in the data, use programming languages to work over the data to remove the noise.
+# Explore - Visualizations of the data to inspire theories and hypotheses.
+# Model - No clue.  Some type of mathematical derivation, something about different order polynomials.
+# Interpret - Use the model to point where to explore next, qualitatively.
+
+# 2. To yeild a better program right away I would opt for better implementation and 
+# merely decent functions.  Perhaps I'm naive but implementation is everything.
+# However it may be better to opt for well designed function interfaces and slack
+# on implementation if there is a longterm plan in the works, and this implementation
+# is only an early stage.
+
+
+
+# 3.
+
+current.date <- as.Date(now())
+current.year.jan1 <- as.Date(format(as.Date(now()),"%Y-01-01"))
+
+day.count <- as.numeric(current.date) - as.numeric(current.year.jan1)
+
+# 4. POSIXct vs POSIXlt
+
+# Both ct and lt POSIX variations have very similar practical applications.
+# From what I can see they are nearly identical in treatment.
+# I would use POSIXlt for very long periods of time, i.e. calculating the 
+# age of the universe, while reserving POSIXct for more pedestrian efforts.
+
+# 5. 
+claud.birthday <- as.numeric(as.Date("1916-04-30"))
+today <- as.numeric(as.Date(now()))
+days.ago <- today - claud.birthday
+print("Days ago Claud was born:")
+print(days.ago)
+
+
+# 6. Data.frame 
+
+month.vec <- 12
+day.vec <- c(1:10)
+year.vec <- 2014
+
+q6.df <- data.frame("Month" = month.vec,"Day" = as.numeric(day.vec),"Year" = year.vec)
+
+q6.df$date <- as.Date(ymd(paste(q6.df$Year,q6.df$Month,q6.df$Day,sep="-")))
+
+# 7. Illustrate the code necessary to take a string of MM-DD-YYYY format and convert it to a date.
+
+as.Date("02-12-1985", format="%m-%d-%Y")
+
+# 8. Illustrate the code necessary to take a date and extract the month of the date.
+
+q8.date <- as.Date(now())
+q8.month <- format(q8.date, "%m")
+
+# 9. Create a sequence of dates from January 1, 2005 to December 31st 2014
+
+start.date <- as.numeric(as.Date("2005-01-01"))
+
+end.date <- as.numeric(as.Date("2014-12-31"))
+
+as.Date(c(start.date:end.date), origin="1970-01-01")
+
+# 10.
+
+# stringsAsFactors = false
