@@ -1,0 +1,46 @@
+# Tidy Data
+# 1. Data ____ is what Hadley Wickham calls structuring datasets to facilitate analysis.
+# A. Tidying
+
+# 2. In tidy data, there are three properties. One of these properties states that “each type of
+# observational unit forms a table.” What are the other two properties of tidy data
+
+# A. Each variable is a column, and each observation is a row.
+
+# According to Hadley Wickham, what are the five most common problems with messy datasets?
+
+# A. 1. Column Headers are not variable names, they are values.
+#    2. More than one variable is stored in a column.
+#    3. More than one observational unit is stored in a single table.
+#    4. One observational unit is stored in multiple tables.
+#    5. Variables are stored in rows and columns (should only be in columns). 
+
+# 4. Provide a one sentence definition for each of the four fundamental verbs of data manipulation:
+# 
+# a. Filter - Removing observations from a dataset (creating a subset)
+# b. Transform - adding variables or modifying variables (e.g. with a function)
+# c. Aggregate - Collapsing multiple variables into a single variable.
+# d. Sort - changing the order of observations.
+
+# 5. What is the function in base R used for filtering?
+# A. subset()
+
+# “Introduction to dplyr”
+# 1.What are the advantages and disadvantages of using the dplyr package versus the plyr package?
+# A.There is dramatic speed improvements with dplyr.  It also uses the %.% operator to chain together 
+# operations, making them easier to read and understand.
+# As for disadvantages, dplyr only works with data frames, and does not support lists, etc.
+#
+# 2.What are the advantages and disadvantage of using plyr versus the base R apply family of functions?
+# A.The advantages of using the plyr package is that the **ply function family makes the split-apply-combine
+# methods of data analysis much easier than with base R functions.
+# A disadvantage is that of speed.  The plyr functions are slower than base R.  It is a trade-off between speed
+# and convenience.
+
+# tidyr
+# 1. What are the two verbs (functions) in the tidyr package that correspond to the spreadsheet
+# functions pivot and unpivot? 
+
+# A. Pivot corresponds to the tidyr function gather()
+#    Unpivot corresponds to the tidyr function spread()
+
