@@ -1,0 +1,13 @@
+# I went over this many times and I believe it satisfies the requirements, but I was not able to
+# mimic the exact output sample you provided.  The rows of the sample are included, just not in the 
+# sort order (i.e. not the first 3 rows of the output).  Please let me know if this is an error of some kind.
+
+cars.group <- mtcars
+
+cars.group <- group_by(cars.group, am, cyl)
+
+cars.group <- mutate(cars.group, avg.mpg = mean(mpg), avg.wt = mean(wt))
+
+cars.group <- filter(cars.group, mpg > 20)
+
+select(cars.group, cyl, am, avg.mpg, avg.wt)
