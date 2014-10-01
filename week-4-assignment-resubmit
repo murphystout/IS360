@@ -1,0 +1,4 @@
+mtcars %.%
+  group_by(cyl, am) %.%
+  summarise(avg.mpg=mean(mpg),avg.wt = mean(wt)) %.%
+  filter(avg.mpg > 20)
