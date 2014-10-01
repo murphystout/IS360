@@ -1,0 +1,56 @@
+# 1. Write down 3 questions that you might want to answer based on this data.
+# What percentage of young (16-24) Edinburgh residents voted Yes in the poll.
+# What percentage of young (16-24) Glasgow residents voted Yes in the poll.
+# What percentage of older (25+) Glasgow residents voted Yes in the poll.
+
+# 2. Create an R data frame with 2 observations to store this data in
+# its current “messy” state. Use whatever method you want to re-create 
+# and/or load the data.
+
+column.names <- c("Edinburgh/16-24", "Edinburgh/25+","Glasgow/16-24", "Glasgow/25+","Vote")
+
+col1 <- c(80100,35900)
+col2 <- c(14300,214800)
+col3 <- c(99400,43000)
+col4 <- c(150400,207000)
+col5 <- c("Yes","No")
+
+df <- data.frame(col1,col2,col3,col4,col5)
+
+colnames(df) <- column.names
+
+# 3. Use the functionality in the tidyr package to convert the data
+# frame to be “tidy data.”
+
+df <- df %>% 
+  gather(key,value,-Vote) %>% 
+  separate(key,c("City","Age"),"/") %>% 
+  spread(Vote,value)
+
+# 4.Use the functionality in the plyr package to
+# answer the questions that you asked in step 1.
+
+votesplit <- function(data) {
+  YesPercent = data$Yes/(data$No+data$Yes)
+  NoPercent = data$No/(data$No+data$Yes)
+  return(data.frame(data,"Yes.Percentage" = YesPercent, "No.Percentage" = NoPercent))
+}
+
+df <- ddply(df,c("Yes","No"),votesplit)
+
+
+df %>% filter(City == "Edinburgh" & Age == "16-24") %>% 
+select(City, Age, Yes.Percentage)
+
+df %>% filter(City == "Glasgow" & Age == "16-24") %>% 
+  select(City, Age, Yes.Percentage)
+
+df %>% filter(City == "Glasgow" & Age == "25+") %>% 
+  select(City, Age, Yes.Percentage)
+
+# 5. Having gone through the process, would you ask different questions and/or 
+# change the way that you structured your data frame?
+
+# I wouldn't ask different questions.  The process of tidying the messy data taught me 
+# to not treat observations as variables (specifically, Age was being treated as a variable
+# with vote counts the associated observation.  This caused issues with the tidying).
