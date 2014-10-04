@@ -1,0 +1,70 @@
+# 1 Describe in one or two sentences what is contained in the 
+# caith dataset.
+
+require(MASS)
+caith
+?caith
+
+# The 'caith' dataset is a table of data pertaining to the 
+# eye color and hair color of people in Caithness, Scotland.
+# The rows indication eye color while the columns indicate hair
+# color.
+
+# 2. Describe what is stored in variable EyeColor
+
+require(MASS)
+data(caith)
+EyeColor  <- rowSums(caith)
+
+# EyeColor is a numeric vector containing the total number of 
+# people that have a specific eye color (from within the caith
+# dataset)
+
+# 3.Create a new variable called HairColor that is a numeric vector with the total hair
+# colors across different eye colors. 
+
+HairColor <- colSums(caith)
+
+# 4. Create a histogram of EyeColors.  What is the most common Eye Color?
+
+# Professor, the only way I found to do this was to use the BarPlot function.
+# Searching online it seems like this is a common problem (being unable to have 
+# the numeric vector values represent # of observations, instead of being observations
+# themselves) and no one seems to have a solution.  Barplots do seem like a 
+# decent alternative, however.
+
+barplot(EyeColor, xlab="Eye Color", ylab = "Frequency", main = "Eye Color Histogram")
+
+# The most common eye color is 'Medium'
+
+#5. Describe what this line of code does:
+
+caitha <- as.matrix(caith)
+
+# This sets the variable "caitha" to a matrix data type, using the 'caith' data frame
+# as the source data.
+
+# 6. Describe what the following line of code does:
+
+barplot(t(as.matrix(caith)))
+
+# This code displays a barplot of data.  The data is a transposition of a matrix. 
+# The matrix contains the data from the data frame 'Caith'.
+
+# 7. Modify the code above:
+
+barplot(t(as.matrix(caith)), beside = TRUE)
+
+# 8. Is there a relationship between eye color and hair color?
+
+# Taking a look at the barplot we see that there is a relationship
+# between some eye and hair colors:
+
+barplot(as.matrix(caith),beside = TRUE, legend.text = TRUE)
+
+# 'Light' eye color is most commonly observed with 'Fair' hair color.
+# 'Medium' eye color is most commonly observed with 'Medium' hair color.
+# 'Dark' eye color is most commonly observed with 'Dark' hair color.
+# 'Black' hair is most commonly observed with 'Dark' eye color.
+
+
