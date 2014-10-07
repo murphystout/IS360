@@ -1,0 +1,75 @@
+# I decided to use "LifeCycleSavings" dataset that is included within R.  I'm including the
+# description of the dataset for reference purposes
+
+?LifeCycleSavings
+
+# A data frame with 50 observations on 5 variables.
+#
+# [,1]   sr	 numeric	 aggregate personal savings
+# [,2]	 pop15	 numeric	 % of population under 15
+# [,3]	 pop75	 numeric	 % of population over 75
+# [,4]	 dpi	 numeric	 real per-capita disposable income
+# [,5]	 ddpi	 numeric	 % growth rate of dpi
+
+attach(LifeCycleSavings)
+
+# A histogram is good for describing the distrubtion of measurements.  If we use a histogram
+# to plot the personal savings (sr) in the dataset, we see an interesting distribution:
+
+hist(sr)
+
+# With this we see a right-skewed bell curve, showing nearly all observations fall below the 
+# median or within 1 standard deviation.  In real-world terms this means that the vast majority of 
+# people have very little savings or moderate savings.
+
+# Box plots are also handly and viewing the distribution of observations, especially when looking for outliers.
+# When looking at the Disposable Income (dpi), of various countries, the extremes become apparent when using
+# a boxplot:
+
+boxplot(dpi,main="Boxplot of Disposable Income",ylab="Per-capita Disposable Income")
+
+# As we can see the maximum is stretched very far from the median.
+
+# A histogram shows as the same thing, an almost perfectly right-skewed curve:
+
+hist(dpi,main="Histogram of Disposable Income",xlab="Per-capital Disposable Income")
+
+
+# Looking at the two age variables (pop15 and pop75), we can gain some insight into world population.
+# Using a scatterplot with these two variables can give us some visualization as to their relationship.
+
+plot(pop15,pop75)
+
+# We see a pretty clear negative correlation.  Using R's cor() function we can quantify this:
+
+cor(pop15,pop75)
+
+# The result we get is -0.9084787, an almost perfect negative correlation.  In real world terms this means that 
+# as the percentage of the population that is younger (15 and under) increases, the percentage of the population that 
+# is elderly (75+) decreases.
+
+# But how does the percentage of young people in a society affect finances?  Let us look at a scatterplot of
+# pop15 versus dpi:
+
+plot(dpi,pop15)
+
+# Not looking good for the young folk.  A clear negative coorelation between younger people in the population and 
+# disposable income in the population.  Quantified:
+
+cor(dpi,pop15)
+
+# -0.7561881
+
+# How about savings?  We might expect to see similar results:
+
+plot(sr,pop15)
+
+# The scatterplot gives us a strange picture, not as clear as the previous ones.  Quanitifying the correlation:
+
+cor(sr,pop15)
+
+# -0.4555381
+
+# We see a moderate negative correlation.  In real world terms this means that while the presence of young people
+# in a population has a strong negative correlation on disposable income (ask a Parent, kids are expensive), it 
+# has a weaker (although still present) negative correlation on savings.  
