@@ -1,0 +1,67 @@
+#The graphic below shows four datasets, each with 2 variables and 10 observations. Show off what 
+#you’ve learned so far in the course by using R to analyzeand compare the data in these datasets. 
+#You may work alone or with up to three other students on this assignment.
+#(Remember that assignments are worth 10 points and projects are worth 100 points, so plan 
+# accordingly; you’ll receive full credit on the assignment if you turn in something reasonable).
+
+w7data <- read.csv("C:/Users/hayesmi/Desktop/week-7-assignment-data.csv")
+
+w7data
+
+attach(w7data)
+
+# There are 4 sets of data.  Let's first examine them using scatterplots and correlation tests 
+
+cor(x1,y1)
+# 0.8164205 - Strong Correlation
+plot(x1,y1)
+
+cor(x2,y2)
+# 0.8162365 - Strong Correlation
+plot(x2,y2)
+
+cor(x3,y3)
+# 0.8162867 - Strong Correlation
+plot(x3,y3)
+
+cor(x4,y4)
+# 0.8165214 - Strong Correlation
+plot(x4,y4)
+
+# All 4 sets have strong correlation between the X and Y values.
+
+# Now let us identify any potential outliers in the data set.  Boxplots are good for this:
+
+boxplot(w7data)
+
+# This shows us y2, x3,x4 and y4 all have outliers.  This should be investigated further with the source data
+# to confirm these are accurate measurements.
+
+
+# Let's use ggplot2 to analyze a little further, using histograms
+
+require(ggplot2)
+
+# Let us look at all the y values in all 4 data sets:
+
+ggplot(w7data, aes(x = c(y1,y2,y3,y4))) + geom_histogram()
+
+# We get whats look to be a normal bell curve.  Do we see the same with the x-values?
+
+ggplot(w7data, aes(x = c(x1,x2,x3,x4))) + geom_histogram()
+
+# We don't, the x-values are not normally distributed.
+
+# We will see the same type of distributions using density plots:
+
+ggplot(data = w7data) + geom_density(aes(x = c(x1,x2,x3,x4)))
+
+ggplot(data = w7data) + geom_density(aes(x = c(y1,y2,y3,y4)))
+
+# Findings:
+# All 4 datasets have strong correlation.
+# y2,x3,x4 and y4 have outliers that need to be investigated.
+# the x values do not follow a bell curve
+# the y values tend to follow a normal bell curve
+
+
