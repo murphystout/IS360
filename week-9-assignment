@@ -1,0 +1,55 @@
+install.packages("XML")
+require(XML)
+theURL <- "http://www.jaredlander.com/2012/02/another-kind-of-super-bowl-pool/"
+bowlPool <- readHTMLTable(theURL, which = 1, header = FALSE, stringsasFactors = FALSE)
+
+# 1. What type of data structure is bowlpool?
+
+class(bowlPool)
+# Data Frame
+
+# 2. Suppose instead you call readHTMLTable() with just the URL argument, against the provided URL, as shown below:
+
+theURL = "http://www.w3schools.com/html/html_tables.asp"
+hvalues = readHTMLTable(theURL)
+
+# What is the type of variable returned in hvalues?
+
+class(hvalues)
+
+# List
+
+# 3. Write R Code that shows how many HTML Tables are represented in hvalues
+
+# Note: Not sure if Null HTML tables count.  It seems to be implied that this is more than
+# just a length() command, but I included both:
+
+length(hvalues)
+sum(as.vector(lapply(hvalues,class) == "data.frame"))
+
+# 4. Modify the readHTMLTable code so that just the table with Number,Firstname,LastName and Points is returned in a dataframe.
+# Note: While the code below satisfies the requirements, I wasn't able to find a way
+# to specifie column names via readHTMLTable.  I could only do it with the which parameter.  
+# I'll check in with your during office hours tonight
+
+q4 <- readHTMLTable(theURL, which = 1)
+
+# 5. Modify the returned data frame so only the Last Name and Points Columns are shown.
+
+q4[,c("Last Name","Points")]
+
+# 6. Identify another interesting web page with HTML table values
+
+q6URL <- "http://www.thomasnet.com/articles/hardware/screw-nail-sizes"
+
+# 7. How many html tables does that page contain?
+# Note: Again including both Null and non-Null tables
+
+q6 <- readHTMLTable(q6URL)
+length(q6)
+sum(as.vector(lapply(q6,class) == "data.frame"))
+
+# 8. Identify your web browser and describe how you view HTML page source in your web browser.
+
+# My web browser is FireFox, and I use CTRL + U to view source. 
+
