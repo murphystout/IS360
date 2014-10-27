@@ -1,0 +1,41 @@
+# Week 9 Project
+
+require(rvest)
+require(devtools)
+
+# This function will take a URL and return a data.frame containing all the HTML
+# links in the URL, the anchor text of the link and the rel attribute (handly for rel="nofollow").
+
+getlinks <- function(theURL){
+  anchortext <- theURL %>% html() %>% html_nodes("a") %>% html_text()
+  URLs <- theURL %>% html() %>% html_nodes("a") %>% html_attr("href")
+  rel <- theURL %>% html() %>% html_nodes("a") %>% html_attr("rel")
+  links <- data.frame("URL" = URLs, "Anchor Text" = anchortext, "Rel" = rel)
+  return(links)
+}
+
+
+# Note: I would like to be able to add an "External/Internal" field 
+# which would note whether the link is pointed at the home domain.  
+# I am having trouble testing strings against the lists.  I'll ask 
+# about this at office hours.
+
+
+# Using RCurl and XML
+
+require(RCurl)
+require(XML)
+
+getlinks2 <- function(theURL){
+  htmldoc <- getURL(theURL)
+  htmldoc <- htmlParse(htmldoc)
+  
+  urls <- as.vector(xpathSApply(htmldoc,"//a/@href"))
+  anchortext <- xpathSApply(htmldoc,"//a[@href]", xmlValue)
+#  rel <- as.vector(xpathSApply(htmldoc,"//a/@rel"))
+# Only returns items where rel exists. Need it to return NA or other when it doesn't exist.
+  
+  links <- data.frame("URL" = urls, "Anchor Text" = anchortext)
+  return(links)
+  
+  }
